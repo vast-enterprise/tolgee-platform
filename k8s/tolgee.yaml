@@ -44,6 +44,17 @@ spec:
           envFrom:
             - configMapRef:
                 name: tolgee-config
+          env:
+            - name: TOLGEE_SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: tolgee-smtp
+                  key: username
+            - name: TOLGEE_SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tolgee-smtp
+                  key: password
           resources:
             requests:
               cpu: 500m
@@ -120,7 +131,8 @@ spec:
 # apiVersion: v1
 # kind: Secret
 # metadata:
-#   name: tolgee-secrets
+#   name: tolgee-smtp
 #   namespace: env-base
 # stringData:
-#   # Add application secrets here if DEV enables authenticated integrations.
+#   username: luonan@vastai3d.com
+#   password: <Feishu SMTP password or app password>
